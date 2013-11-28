@@ -1,0 +1,203 @@
+% -----------------------------*- LaTeX -*------------------------------
+%   exam.sty  -- Exam Styles
+%
+%   AJ Armstrong (aja@nait.ab.ca) 9 Jul 2002
+%
+%   Based on the scribe notes macros by Shang-Hua Teng (steng@cs.bu.edu)
+%   
+% ----------------------------------------------------------------------
+%   USAGE:
+%
+%   \documentclass[12pt]{report}                          NOT article!
+%   \usepackage{exam}
+%   ...
+%   \begin{document}
+%   \course{CNT 252}                                     optional
+%   \coursetitle{C++ Algorithms and Data Structures}     optional
+%   \semester{Fall 2002}                                 optional
+%   \time{1.5 Hourse}                                    required
+%   \materials{Calculator, 8.5" X 11" Crib Sheet}        required
+%   \examdate{9 Jul 2002}                                required  
+%   \examtitle{Midterm}                                  required
+%   \maketitle
+% ----------------------------------------------------------------------
+%   The stuff before \maketitle can be in any order, but it has to go
+%   before \maketitle.
+%
+%   The lecture number appears in all page, section, theorem, figure,
+%   table, and equation numbers.  It must be a single positive
+%   integer; ranges like 3--5 are not (yet) properly supported.
+%
+%   Automatically loads the amsmath package, which is a Good Thing,
+%   especially if you're going to use a lot of math.  See ``The LaTeX
+%   Companion'' for details!
+%
+%   To get a proof, use \begin{proof}...\end{proof}.  You can attach
+%   an optional argument, just as with the standard latex theorem
+%   environment.  You can also define new proof-like environments with
+%   \newproof{foo}{bar}, just like \newtheorem.
+% ----------------------------------------------------------------------
+\RequirePackage{fullpage,amsmath,amssymb,epsfig,verbatim,enumerate,alltt,
+                fancyheadings,multicol,lastpage,listings,helvet,sectsty,marvosym}
+
+\setlength{\topmargin}{0in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+ 
+\def\course#1{\def\@course{#1}}
+\course{CNT 252}
+
+\def\coursetitle#1{\def\@coursetitle{#1}}
+\coursetitle{C++ Algorithms and Data Structures}
+
+\def\semester#1{\def\@semester{#1}}
+\semester{Fall 2002}
+
+\def\materials#1{\def\@materials{#1}}
+\materials{Calculator, 8.5" X 11" Crib Sheet}
+
+\def\instructions#1{\def\@instructions{#1}} \instructions{Read
+  questions carefully and provide the best answer.  Show work where
+  appropriate.}
+
+\def\time#1{\def\@time{#1}}
+% \@time intentionally undefined
+
+\def\examdate#1{\def\@examdate{#1}}
+% \@examdate intentionally undefined
+
+\def\examtitle#1{\def\@examtitle{#1}}
+% \@examtitle intentionally undefined
+
+\def\maketitle
+{
+  \pagestyle{empty}
+  \includegraphics[scale=0.5]{/usr/local/latex/naitit.eps}
+  \begin{flushright}
+    \vspace{1in}
+   {\bf {\Huge \@course}}\\\medskip
+   {\bf {\Large \@coursetitle}}\\ \medskip
+   {{\Large \@examtitle}}\\
+   \@date\\
+  \end{flushright}
+\bigskip
+
+\begin{large}
+\begin{quote}
+\begin{tabular}{rp{4in}}
+{\bf Date:}&\@date\\\\
+{\bf Time Allowed:}&\@time\\\\
+{\bf Materials Permitted:}&\@materials\\\\
+{\bf Student Name:}&\line(1,0){240}\\\\
+{\bf Class:}&\line(1,0){240}\\\\
+{\bf Instructor:}&\line(1,0){240}\\
+\end{tabular}
+\end{quote}
+\end{large}
+\begin{em}
+\@instructions
+\end{em}
+\begin{center}
+\line(1,0){400}
+\end{center}
+
+\begin{scriptsize}
+The following policy is an addition to the Exam and Coursework
+Regulations and Procedures as outlined in the NAIT
+Electronics/Computer Engineering Handbook.  {\em It is the student's
+  responsibility to be aware of the information contained in the
+  handbook in addition to the following policy.}
+
+{\bf Use of Electronic Devices During Exams}
+
+No electronic devices other that the approved calculator as outlined
+in the appropriate student guide, or necessary medical devices, will
+be allowed in an examination room during exams.  The use of a
+calculator will be permitted only in exams were such use is considered
+appropriate to the content of the exam, and such use is specifically
+permitted by the examiner.  For the purpose of this policy, exams are
+defined as any measurement tool used to determine learning taking place
+in classrooms, labs or in the field.  These include but are not
+limietd to lab exams, quizzes, midterm exams, final exams, etc.
+
+{\em Definition of electronic devices: Including but not limited to
+  personal stereos, MP3 players, PDA's, cellular phones, radios,
+  electronic daytimers, handhelp computers, and laptops.}
+
+The examination envigilator will ensure proper implementation of this
+policy and any decisions will be final.  Any challenges to an
+envigilators decision must be made in writion to an Assistant Program
+Head of the appropriate program. 
+\end{scriptsize}
+  \cleardoublepage
+  \pagestyle{plain}
+  \setcounter{page}{1}
+  \pagenumbering{arabic}
+
+  %Set Up Styles for remaining pages
+  \pagestyle{fancy}
+  \setlength{\headrulewidth}{0.6pt}
+  \setlength{\footrulewidth}{0.6pt}
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \lfoot{\@course}
+  \cfoot{\thepage\ of \pageref{LastPage}}
+  \rfoot{\@examtitle}
+}
+
+%reference environment
+\newenvironment{reference}[1]%
+{%
+\begin{small}\begin{quote}\sffamily%.
+{\sffamily{\bf Reference:~}{\em #1}}\marginpar{\Large\Writinghand}\\%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%warning environment
+\font\manual=manfnt
+\def\dbend{{\manual\char127}} % dangerous bend sign
+\newenvironment{warning}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Warning:~}\marginpar{\dbend}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%tip environment
+\newenvironment{tip}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Tip:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+
+\lstset{
+  language=[ISO]C++,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\color{blue},
+  identifierstyle=,
+  commentstyle=\color{red}\em,
+  stringstyle=\ttfamily,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=5,
+  numbersep=5pt,
+  frame=single
+}
+
+%code environments
+\lstnewenvironment{code}
+{}{}
+
+\lstnewenvironment{C++}
+{\lstset{language=[ISO]C++}}
+{}

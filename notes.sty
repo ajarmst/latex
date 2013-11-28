@@ -1,0 +1,501 @@
+% -----------------------------*- LaTeX -*------------------------------
+%   notes.sty  -- Style for Athabasca Documents
+%
+%   AJ Armstrong (aja@nait.ab.ca) 20 Sep 2003
+%    
+% ----------------------------------------------------------------------
+%   USAGE:
+%
+%   \documentclass[letterpaper,10pt]{article}  %twoside?
+%   \usepackage{/path/to/article}
+%   \begin{document}
+%   \course{CNT 252}                                 required
+%   \coursetitle{C++ Data Structures}                required
+%   \professor{Dr. Fred Foobar}                      required
+%   \doctype{Notes}                                  optional, default shown
+%   \docnumber{1}                                    required (must be num)
+%   \doctitle{Introduction}                          required
+%   \semester{Fall 2002}                             optional, default current
+%   \docauthor{AJ Armstrong}                         optional, default shown
+%   \docauthorid{2620449}                            optional, default shown
+%   \docdate{5 Jan 2003}                             optional, default current
+%   \owner{AJ Armstrong}           (for copyright)   optional, default shown
+%   \institution{Athabasca University}               optional, default shown
+%   \department{School of Computing and Information Systems} ditto
+%
+%   \maketitle
+% ----------------------------------------------------------------------
+%  Environments:
+%  ------------    
+%  syntax{command}       syntax notes, numbered
+%  algorithm{name}       algorithms, using the algorithmic package, numbered 
+%  reference{reference}  references
+%  warning               warnings
+%  tip                   tips
+%  info                  general information
+%  hint                  hints
+%
+%  Code Environments:
+%  -----------------
+%  code                               defaults to C++
+%  C++                                ISO C++
+%  C                                  ANSI C
+%  lisp                               Lisp
+%  python                             Python
+%  ruby                               Ruby
+%  latex                              LaTeX
+%  SQL                                SQL
+%  XML                                XML
+%  make                               MakeFiles
+%  shell                              bash/zsh
+%  console,consolesmall,consoletiny   Use Environment, but no formatting (# for comment)
+%  
+%
+%  Other Commands:
+%  --------------
+%  \rights                            print copyright notice
+%  \datedmy                           current date as 6 Dec 2003
+%  \dateDMY                           current date as 6 DEC 2003
+%  \datesem                           current semester as Fall 2003
+%  \href{URL}{text}                   insert linked text in pdf
+%  \url{URL}                          insert linked URL in pdf
+%  \link{URL}{text}                   insert link in form ``text (linked URL)''
+%  \insertgraphic{name}{caption}{scale}  insert eps graphics named ``name.eps'',scaled
+%  \insertcode{enviro}{file}          insert code from file, with environment
+% ----------------------------------------------------------------------
+\RequirePackage{fullpage,amsmath,amssymb,epsfig,alltt,color,enumerate,mathptmx,
+                fancyvrb,listings,helvet,sectsty,marvosym,verbatim,
+                algorithmic,graphics,fancyhdr,lastpage,setspace} %pslatexx
+
+%\usepackage[]{apacite}
+
+\usepackage[hyper]{apacite}
+
+\usepackage[bookmarks,
+            dvipdfm,
+            linktocpage,
+            colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            urlcolor=blue,
+            backref=true,
+            letterpaper,
+            pdfstartview=FitB]{hyperref}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{4ex}
+
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+
+\setlength{\textheight}{22cm}
+\setlength{\footskip}{1.5cm}
+
+\newcommand*{\datedmy}{%
+    \number\day\space
+    \ifcase\month \or
+    Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+    Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+    \space\number\year}
+
+\newcommand*{\dateDMY}{%
+    \number\day\space
+    \ifcase\month \or
+    JAN\or FEB\or MAR\or APR\or MAY\or JUN\or
+    JUL\or AUG\or SEP\or OCT\or NOV\or DEC\fi
+    \space\number\year}
+
+\newcommand*{\datesem}{%
+    \ifcase\month \or
+    Winter\or Winter\or Winter\or Winter\or Summer\or Summer\or
+    Summer\or Summer\or Fall\or Fall\or Fall\or Fall\fi
+    \space\number\year}
+
+\def\course#1{\def\@course{#1}}
+%intentionally undefined
+
+\def\coursetitle#1{\def\@coursetitle{#1}}
+%intentionally undefined
+
+\def\semester#1{\def\@semester{#1}}
+\semester{\datesem}
+
+\def\professor#1{\def\@professor{#1}}
+%intentionally undefined
+
+\def\docauthor#1{\def\@docauthor{#1}}
+\docauthor{AJ Armstrong}
+
+\def\docauthorid#1{\def\@docauthorid{#1}}
+\docauthorid{2620449}
+
+\def\owner#1{\def\@owner{#1}}
+\owner{AJ Armstrong}
+
+\def\institution#1{\def\@institution{#1}}
+\institution{Athabasca University}
+
+\def\department#1{\def\@department{#1}}
+\department{School of Computer and Information Systems}
+
+\def\docdate#1{\def\@docdate{#1}}
+\docdate{\datedmy}
+
+\def\doctype#1{\def\@doctype{#1}}
+\doctype{Notes}
+
+\def\docnumber#1{\def\@docnumber{#1}}
+% \@unit intentionally undefined
+
+\def\doctitle#1{\def\@doctitle{#1}}
+% \@unittitle intentionally undefined
+
+%Title
+%Title
+\def\maketitle
+{
+%Setup for pdf support
+\hypersetup{
+            pdftitle={\@doctype~\@docnumber~-~\@doctitle},
+            pdfsubject={\@course~\@coursetitle},
+            pdfauthor={\@docauthor}
+          }
+
+\color{white}
+\colorbox{black}
+{
+  \parbox[t][3cm][c]{6cm}
+  {
+    \begin{LARGE}\begin{bf}\sffamily
+      \@doctype~\@docnumber\\
+    \end{bf}\end{LARGE}\sffamily
+      \@doctitle
+  }
+}
+\normalcolor
+\begin{minipage}[t][3cm][c]{8.3cm}
+\begin{flushright}
+   \includegraphics[scale=0.5]{../../../latex/aulogo.eps}\\
+    {\bf \@course}\\
+    {\bf \@coursetitle}\\
+    ~\\
+    {\small
+      \@semester (\@professor)\\
+      \@docdate\\
+      \@docauthor~--~\@docauthorid\\
+    }
+\end{flushright}
+\end{minipage}
+\setcounter{chapter}{\@docnumber}
+\newline
+%\rule[-14pt]{15cm}{0.6pt}
+
+
+\bigskip
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\fancyhead{}
+\fancyfoot[RO,LE]{\sffamily\@docdate}
+\fancyfoot[CO,CE]{\sffamily\@docnumber~-~\thepage}
+\fancyfoot[LO,RE]{\sffamily\@docnumber.~\@doctitle}
+
+\allsectionsfont{\sffamily}
+\sectionfont{\sffamily\hspace*{-2.4em}\sectionrule{3ex}{0pt}{-1ex}{3pt}}
+\subsectionfont{\sffamily\hspace*{-1.5em}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+}
+
+%Link command
+%/link{URL}{text}
+\newcommand{\link}[2]{#2~(\url{#1})}
+
+%/insertgraphic{name}{caption}{scale}
+\newcommand{\insertgraphic}[3]
+{
+  \begin{figure}[ht]
+    \begin{center}
+      \includegraphics[scale=#3]{#1.eps}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+\def\rights
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
+        \copyright ~\number\year , \@owner .}  This material may be
+        freely distributed subject to the following conditions: \\(1)
+        Distribution requires that this copyright notice be kept
+        intact and the original author be given credit reasonable to
+        the medium of distribution.  \\(2) Distribution of modified or
+        partial versions of this material is prohibited without the
+        explicit permission of the copyright holder.  \\(3) This
+        material may not be distributed in any manner that is
+        primarily directed toward commercial advantage or private
+        monetary compensation. \\Queries and comments concerning this
+        document are welcome.  Contact the author, AJ Armstrong, at
+        aja@nait.ab.ca}} }
+
+%syntax environment
+\newcounter{syntax}
+\setcounter{syntax}{0}
+\newenvironment{syntax}[1]%
+{%
+\stepcounter{syntax}
+%\pdfbookmark[2]{Syntax~\@docnumber.\thesyntax}{syn\thesyntax}
+\begin{small}\begin{quote}\sffamily%}.
+{\sffamily\bf Syntax~\@docnumber.\thesyntax:~{\tt #1}}\marginpar{{\Large\Lightning}}\\%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%algorithm environment
+\newcounter{algorithm}
+\setcounter{algorithm}{0}
+\newenvironment{algorithm}[1]%
+{%
+\stepcounter{algorithm}
+\pdfbookmark[2]{Algorithm~\@docnumber.\thealgorithm}{alg\thealgorithm}
+\begin{small}\begin{quote}\sffamily%}.
+{\sffamily\bf Algorithm~\@docnumber.\thealgorithm:~{\em #1}}\marginpar{{\Large$\aleph$}}\\%
+\begin{algorithmic}
+}%
+{%
+\end{algorithmic}\end{quote}\end{small}%
+}
+
+%reference environment
+\newenvironment{reference}[1]%
+{%
+\begin{small}\begin{quote}\sffamily%.
+{\sffamily{\bf Reference:~}{\em #1}}\marginpar{\Large\Writinghand}\\%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%warning environment
+\font\manual=manfnt
+\def\dbend{{\manual\char127}} % dangerous bend sign
+\newenvironment{warning}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Warning:~}\marginpar{\dbend}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%tip environment
+\newenvironment{tip}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Tip:~}\marginpar{{\Large\checkmark}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%info environment
+\newenvironment{info}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Info:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%note environment
+\newenvironment{note}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Note:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%hint environment
+\newenvironment{hint}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Hint:~}\marginpar{{\Large\checkmark}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%enumerate_packed environment
+\newenvironment{enumerate_packed}{
+\singlespacing
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+%itemize_packed environment
+\newenvironment{itemize_packed}{
+\singlespacing
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+
+%console environments - code without formatting
+%except for # comments and strings
+
+\lstdefinelanguage{consoletiny}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\tiny\ttfamily
+}
+
+\lstdefinelanguage{consolesmall}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\scriptsize\ttfamily
+}
+
+\lstdefinelanguage{console}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\footnotesize\ttfamily
+}
+
+\lstdefinelanguage{CSharp}
+{
+ morecomment = [l]{//}, 
+ morecomment = [l]{///},
+ morecomment = [s]{/*}{*/},
+ morestring=[b]", 
+ sensitive = true,
+ morekeywords = {abstract, event, new, struct, as, explicit, null,
+   switch, base, extern, object, this, bool, false, operator, throw,
+   break, finally, out, true, byte, fixed, override, try, case, float,
+   params, typeof, catch, for, private, uint, char, foreach,
+   protected, ulong, checked, goto, public, unchecked, class, if,
+   readonly, unsafe, const, implicit, ref, ushort, continue, in,
+   return, using, decimal, int, sbyte, virtual, default, interface,
+   sealed, volatile, delegate, internal, short, void, do, is, sizeof,
+   while, double, lock, stackalloc, else, long, static, enum,
+   namespace, string}
+}
+
+%The listings package doesn't have a shell script environment
+%what's up with that?
+%I'll also include some standard Unix tools at the top of the 
+%keyword list (before 'alias' which is the first true shell keyword
+\lstdefinelanguage{shell} {
+  keywords={afio, at, awk, cal, cat, cd, chgrp, chmod, chown, ci, cmp,
+    co, comm, configure, cp, cpio, crontab, cut, cvs, date, dd, df,
+    diff, du, echo, expr, file, find, finger, fmt, fsck, ftp, gcc,
+    g++, grep, gzip, head, ispell, kill, less, ln, lpr, ls, mail,
+    make, man, mesg, mkdir, mv, nice, nohup, od, paste, patch, pine,
+    pr, ps, rcp, rcs, rlog, rlogin, rm, rmdir, rsh, rwho, sed, sleep,
+    sort, stty, tail, tar, tee, telnet, test, top, touch, tr, tty,
+    umask, uniq, w, wc, which, who, write, xargs, 
+    alias, bg, break, case, cd, command, continue, do, done, echo,
+    elif, else, esac, eval, exec, exit, export, fc, fg, fi, for,
+    function, getopts, if, in, jobs, kill, let, limit, newgrp, print,
+    pwd, read, readonly, return, select, set, shift, test, then, time,
+    times, trap, typeset, ulimit, umask, unalias, unlimit, unset,
+    until, wait, whence while}, string=[d]{"}, morecomment=[l]{\#},
+  sensitive=true, basicstyle=\footnotesize\ttfamily }
+
+\lstset{
+  language=[ISO]C++,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\color{blue},
+  identifierstyle=,
+  commentstyle=\color{red}\em,
+  stringstyle=\ttfamily,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=5,
+  numbersep=5pt,
+  frame=single
+}
+
+%code environments
+\lstnewenvironment{code}
+{}{}
+
+\lstnewenvironment{C++}
+{\lstset{language=[ISO]C++}}
+{}
+
+\lstnewenvironment{C}
+{\lstset{language=[ANSI]C}}
+{}
+
+\lstnewenvironment{Java}
+{\lstset{language=Java}}
+{}
+
+\lstnewenvironment{lisp}
+{\lstset{language=Lisp}}
+{}
+
+\lstnewenvironment{shell}
+{\lstset{language=shell}}
+{}
+
+\lstnewenvironment{python}
+{\lstset{language=Python}}
+{}
+
+\lstnewenvironment{latex}
+{\lstset{language=[LaTeX]TeX}}
+{}
+
+\lstnewenvironment{ruby}
+{\lstset{language=Ruby}}
+{}
+
+\lstnewenvironment{SQL}
+{\lstset{language=SQL}}
+{}
+
+\lstnewenvironment{XML}
+{\lstset{language=XML}}
+{}
+
+\lstnewenvironment{make}
+{\lstset{language=make}}
+{}
+
+\lstnewenvironment{consoletiny}
+{\lstset{language=consoletiny}}
+{}
+
+\lstnewenvironment{consolesmall}
+{\lstset{language=consolesmall}}
+{}
+
+\lstnewenvironment{console}
+{\lstset{language=console}}
+{}
+
+\lstnewenvironment{CSharp}
+{\lstset{language=CSharp}}
+{}
+
+%insertcode environment
+ \newcommand{\insertcode}[2] { 
+   \lstset{language=#1}
+   \lstinputlisting{#2} }
+

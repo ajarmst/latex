@@ -1,0 +1,39 @@
+\RequirePackage{fullpage,epsfig,verbatim,multicol,fancyheadings,lastpage}
+
+\setlength{\topmargin}{0in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+
+\def\title#1{\def\@title{#1}}
+\title{Title}
+
+\def\version#1{\def\@version{#1}}
+\version{0.0}
+
+\def\date#1{\def\@date{#1}}
+\date{Date}
+
+\def\maketitle
+{
+  \pagestyle{empty}
+  \includegraphics[scale=0.5]{/usr/local/latex/naitit.eps}
+  \begin{flushright}
+    \vspace{3in}
+   {\bf {\Huge \@title}}\\
+   Version \@version\\
+   \@date\\
+  \end{flushright}
+  \cleardoublepage
+  \pagestyle{plain}
+  \setcounter{page}{1}
+  \setcounter{section}{0}
+  \pagenumbering{arabic}
+
+  %Set Up Styles for remaining pages
+  \pagestyle{fancy}
+  \setlength{\headrulewidth}{0.6pt}
+  \setlength{\footrulewidth}{0.6pt}
+  \lfoot{\@title}
+  \cfoot{\thepage\ of \pageref{LastPage}}
+  \rfoot{Version: \@version}
+}

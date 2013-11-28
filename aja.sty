@@ -1,0 +1,881 @@
+% -----------------------------*- LaTeX -*------------------------------
+%   aja.sty  -- Style for NAIT CNT Documents
+%
+%   AJ Armstrong (aja@nait.ca) 20 Sep 2003
+%    
+% ----------------------------------------------------------------------
+%   USAGE:
+%
+%   \documentclass[letterpaper,10pt]{report}                          NOT article!
+%   \usepackage{/path/to/aja}
+%   \begin{document}
+%   \course{CNT 252}                                 required
+%   \coursetitle{C++ Data Structures}                required
+%   \semester{Fall 2002}                             optional, default current
+%   \instructor{AJ Armstrong}                        optional, default shown
+%   \doctype{Lecture}                                required
+%   \docdate{5 Jan 2003}                             optional, default current
+%   \docnumber{1}                                    required (must be a number)
+%   \doctitle{Introduction}                          required
+%   \docsubtitle{...}              (for article)     optional, default blank
+%   \owner{AJ Armstrong    }       (for copyright)   optional, default shown
+%   \exammaterials{...}            (for exams)       optional, default
+%   \examinstructions{...}         (for exams)       optional, default 
+%   \examtime{1.5 Hours}           (for exams)       optional, default shown
+%   
+%   \maketitle (or \makeexamtitle or \makearticletitle)
+% ----------------------------------------------------------------------
+%  Environments:
+%  ------------    
+%  syntax{command}       syntax notes, numbered
+%  algo{name}            algorithms, using the newalg package, numbered 
+%  reference{reference}  references
+%  warning               warnings
+%  tip                   tips
+%  info                  general information
+%  hint                  hints
+%
+%  Code Environments:
+%  -----------------
+%  code                               defaults to C++
+%  c++                                ISO C++
+%  c                                  ANSI C
+%  csarp			C#
+%  java				Java
+%  lisp                               Lisp
+%  python                             Python
+%  ruby                               Ruby
+%  latex                              LaTeX
+%  sql                                SQL
+%  xml                                XML
+%  make                               MakeFiles
+%  shell                              bash/zsh
+%  matlab				Matlab
+%  console,consolesmall,consoletiny   Use Environment, but no formatting (# for comment)
+%  
+%
+%  Other Commands:
+%  --------------
+%  \rights                            print copyright notice
+%  \datedmy                           current date as 6 Dec 2003
+%  \dateDMY                           current date as 6 DEC 2003
+%  \datesem                           current semester as Fall 2003
+%  \href{URL}{text}                   insert linked text in pdf
+%  \url{URL}                          insert linked URL in pdf
+%  \link{URL}{text}                   insert link in form ``text (linked URL)''
+%  \sigline                           intructor's signature line
+%  \epsgraphic{name}{caption}{scale}  insert eps graphics named ``name.eps'',scaled
+%  \insertcode{enviro}{file}          insert code from file, with environment
+% ----------------------------------------------------------------------
+\RequirePackage{fullpage,amsmath,amssymb,epsfig,alltt,enumerate,
+                fancyvrb,fancyhdr,listings,helvet,sectsty,marvosym,
+                verbatim,graphics,fancyhdr,lastpage,setspace,hyphenat,
+                array,ragged2e,url,chngcntr,units,tabularx}
+\usepackage[usenames]{color}
+\usepackage[bookmarks,
+            pdftex,
+            colorlinks=true,
+            urlcolor=blue,
+            letterpaper,
+            pdfstartview=FitB]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage[lined,boxed,linesnumbered]{algorithm2e}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{4ex}
+
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+
+\setlength{\voffset}{-2.5cm}
+\setlength{\topmargin}{0.5cm}
+\setlength{\headheight}{0.5cm}
+\setlength{\headsep}{0.25cm}
+\setlength{\topskip}{0.25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\textheight}{23.5cm}
+\setlength{\footskip}{1.5cm}
+
+%\sloppy
+
+\renewcommand{\familydefault}{cmss}
+
+\newcommand{\lb}{\mathop{\mathrm{lb}}} %base 2 logarithm (lb is iso specified to be log base 2)
+
+\newcommand*{\datedmy}{%
+    \number\day\space
+    \ifcase\month \or
+    Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+    Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+    \space\number\year}
+
+\newcommand*{\dateDMY}{%
+    \number\day\space
+    \ifcase\month \or
+    JAN\or FEB\or MAR\or APR\or MAY\or JUN\or
+    JUL\or AUG\or SEP\or OCT\or NOV\or DEC\fi
+    \space\number\year}
+
+\newcommand*{\datesem}{%
+    \ifcase\month \or
+    Winter\or Winter\or Winter\or Winter\or Summer\or Summer\or
+    Summer\or Fall\or Fall\or Fall\or Fall\or Fall\fi
+    \space\number\year}
+
+\def\course#1{\def\@course{#1}}
+%intentionally undefined
+
+\def\coursetitle#1{\def\@coursetitle{#1}}
+%intentionally undefined
+
+\def\semester#1{\def\@semester{#1}}
+\semester{\datesem}
+
+\def\instructor#1{\def\@instructor{#1}}
+\instructor{AJ Armstrong}
+
+\def\owner#1{\def\@owner{#1}}
+\owner{AJ Armstrong}
+%\owner{Northern Alberta Institute of Technology}
+
+\def\department#1{\def\@department{#1}}
+\department{Computer Engineering Technology}
+
+\def\doctype#1{\def\@doctype{#1}}
+% \@doctype intentionally undefined
+
+\def\docnumber#1{\def\@docnumber{#1}}
+% \@docnumber intentionally undefined
+
+\def\docsubnumber#1{\def\@docsubnumber{#1}}
+\docsubnumber{}
+
+\def\docdate#1{\def\@docdate{#1}}
+\docdate{\datedmy}
+
+\def\doctitle#1{\def\@doctitle{#1}}
+% \@doctitle intentionally undefined
+
+\def\docsubtitle#1{\def\@docsubtitle{#1}}
+\docsubtitle{}
+
+%Change numbering scheme for articles
+\@ifclassloaded{article}
+{
+	\AtBeginDocument{\counterwithin{lstlisting}{section}}
+	\AtBeginDocument{\counterwithin{figure}{section}}
+}
+
+
+%Title
+\def\maketitle
+{
+%Setup for pdf support
+\hypersetup{
+            pdftitle={\@doctype~\@docnumber~-~\@doctitle},
+            pdfsubject={\@course~\@coursetitle},
+            pdfauthor={\@instructor}
+          }
+
+\color{white}
+\colorbox{black}
+{
+  \parbox[t][3cm][c]{6cm}
+  {
+    \begin{LARGE}\begin{bf}\sffamily
+      \@doctype~\@docnumber\@docsubnumber\\
+    \end{bf}\end{LARGE}\sffamily
+     \begin{large} \@doctitle\\
+     \end{large}
+    \begin{small}\sffamily
+    	  \@docsubtitle
+    \end{small}
+  }
+}
+\normalcolor
+\begin{minipage}[t][3cm][c]{8.3cm}
+\begin{flushright}
+   \includegraphics[scale=0.20]{../../latex/naitit.pdf}\\
+    \@course\\
+    \@coursetitle\\
+    {\scriptsize
+      \@semester\\
+      \@docdate
+    }
+\end{flushright}
+\end{minipage}
+\setcounter{chapter}{\@docnumber}
+\def\thechapter{\arabic{chapter}\@docsubnumber}
+\newline
+%\rule[-14pt]{15cm}{0.6pt}
+
+
+\bigskip
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\fancyhead{}
+\fancyfoot[RO,LE]{\sffamily\@docdate}
+\fancyfoot[CO,CE]{\sffamily\@docnumber\@docsubnumber~-~\thepage}
+\fancyfoot[LO,RE]{\sffamily\@docnumber\@docsubnumber.~\@doctitle}
+
+\allsectionsfont{\sffamily}
+\sectionfont{\sffamily\hspace*{-2.4em}\sectionrule{3ex}{0pt}{-1ex}{3pt}}
+\subsectionfont{\sffamily\hspace*{-1.5em}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+}
+
+%Title for Articles
+\def\makearticletitle
+{
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\renewcommand{\thelstlisting}{\arabic{section}.\arabic{lstlisting}}
+%Setup for pdf support
+\hypersetup{
+            pdftitle={\@doctitle},
+            pdfsubject={Northern Alberta Institute of Technology},
+            pdfauthor={\@instructor}
+          }
+
+\color{white}
+\colorbox{black}
+{
+  \parbox[t][3cm][c]{10cm}
+  {
+    \begin{Large}\begin{bf}\sffamily
+      \@doctitle\\
+    \end{bf}\end{Large}\sffamily
+    \begin{small}
+      \@docsubtitle
+    \end{small}
+  }
+}
+\normalcolor
+\begin{minipage}[t][3cm][c]{4.3cm}
+\begin{flushright}
+   \includegraphics[scale=0.2]{../../latex/naitit.pdf}\\
+    \@instructor\\
+    {\scriptsize
+      \@department\\
+      \@docdate
+    }
+\end{flushright}
+\end{minipage}
+%\setcounter{chapter}{1} %Should just be one
+\newline
+%\rule[-14pt]{15cm}{0.6pt}
+
+%Change section headers to not include chapter
+\def\thesection{\arabic{section}}
+
+\bigskip
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\fancyhead{}
+\fancyfoot[RO,LE]{\sffamily\@docdate}
+\fancyfoot[CO,CE]{\sffamily\thepage}
+\fancyfoot[LO,RE]{\sffamily\@doctitle}
+
+\allsectionsfont{\sffamily}
+\sectionfont{\sffamily\hspace*{-1.5em}\sectionrule{3ex}{0pt}{-1ex}{3pt}}
+\subsectionfont{\sffamily\hspace*{-1.5em}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+}
+
+
+%Link command
+%\link{URL}{text}
+\newcommand{\link}[2]{#2~(\url{#1})}
+%\sigline
+\newcommand{\sigline}
+{
+  \begin{flushright}
+    Instructor's Signature:\line(1,0){150}
+  \end{flushright} 
+}
+
+%\insertgraphic{name}{caption}{scale}
+\newcommand{\insertgraphic}[3]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#3]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\insertgraphichere{name}{caption}{scale}
+\newcommand{\insertgraphichere}[3]
+{
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[scale=#3]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\insertgraphicrot{name}{caption}{scale}{angleccw}
+\newcommand{\insertgraphicrot}[4]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\insertgraphichererot{name}{caption}{scale}{angleccw}
+\newcommand{\insertgraphichererot}[4]
+{
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\insertgraphicrotport{name}{caption}{scale}{angleccw}{viewport}
+\newcommand{\insertgraphicrotport}[5]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4,viewport=#5,clip]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\insertgraphichererotport{name}{caption}{scale}{angleccw}{viewport}
+\newcommand{\insertgraphichererotport}[5]
+{
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4,viewport=#5,clip]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\epsgraphic{name}{caption}{scale}
+\newcommand{\epsgraphic}[3]
+{
+  \begin{figure}[ht]
+    \begin{center}
+      \includegraphics[scale=#3]{#1.eps}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\epsgraphichere{name}{caption}{scale}
+\newcommand{\epsgraphichere}[3]
+{
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[scale=#3]{#1.eps}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\epsgraphicrot{name}{caption}{scale}{angleccw}
+\newcommand{\epsgraphicrot}[4]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4]{#1.eps}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+%\epsgraphichererot{name}{caption}{scale}{angleccw}
+\newcommand{\epsgraphichererot}[4]
+{
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[scale=#3,angle=#4]{#1.eps}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
+\def\rightsreserved
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
+        \copyright ~\number\year , \@owner .}  All rights reserved. \\Queries and comments concerning this document may be directed to the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}}}
+
+\def\rights
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline\fbox{\parbox{2.5cm}{\includegraphics[scale=0.5]{../../latex/cc.pdf}}\parbox{13.5cm}{\scriptsize {\bf Copyright \copyright ~\number\year , \@owner .}  This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/2.5/ca/}{Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Canada License}. Queries and comments concerning this document are welcome.  Contact the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}} }
+
+
+\def\rightsold
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
+        \copyright ~\number\year , \@owner .}  This material may be
+        freely distributed subject to the following conditions: \\(1)
+        Distribution requires that this copyright notice be kept
+        intact and the original author be given credit reasonable to
+        the medium of distribution.  \\(2) Distribution of modified or
+        partial versions of this material is prohibited without the
+        explicit permission of the copyright holder.  \\(3) This
+        material may not be distributed in any manner that is
+        primarily directed toward commercial advantage or private
+        monetary compensation. \\Queries and comments concerning this
+        document are welcome.  Contact the author, AJ Armstrong, at
+        aja@nait.ca}} }
+
+%enumerate_packed environment
+\newenvironment{enumerate_packed}{
+\singlespacing
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+%itemize_packed environment
+\newenvironment{itemize_packed}{
+\singlespacing
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+%syntax environment
+\newcounter{syntax}
+\setcounter{syntax}{0}
+\newenvironment{syntax}[1]%
+{%
+\stepcounter{syntax}
+%\pdfbookmark[2]{Syntax~\@docnumber.\thesyntax}{syn\thesyntax}
+\begin{small}\begin{quote}\sffamily%}.
+{\sffamily\bf Syntax~\@docnumber.\thesyntax:~{\tt #1}}\marginpar{{\Large\Lightning}}\\%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%algo environment
+\newcounter{algo}
+\setcounter{algo}{0}
+\newenvironment{algo}[1]%
+{%
+\stepcounter{algo}
+\pdfbookmark[2]{Algorithm~\@docnumber.\thealgorithm}{alg\thealgorithm}
+\begin{small}\begin{quote}\sffamily%}.
+{\sffamily\bf Algorithm~\@docnumber.\thealgorithm:~{\em #1}}\marginpar{{\Large$\aleph$}}\\%
+\begin{algorithm}
+}%
+{%
+\end{algo}\end{quote}\end{small}%
+}
+
+%reference environment
+\newenvironment{reference}[1]%
+{%
+\begin{small}\begin{quote}\sffamily%.
+{\sffamily{\bf Reference:~}{\em #1}}\marginpar{\Large\Writinghand}\\%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%quoted (quotation) environment
+\newsavebox{\auth}
+\newenvironment{quoted}[1]
+{\begin{quote}\sbox{\auth}{\em{\small -- #1}}}
+{\\ \hspace*{\fill}\usebox{\auth}\end{quote}}
+
+%warning environment
+\font\manual=manfnt
+\def\dbend{{\manual\char127}} % dangerous bend sign
+\newenvironment{warning}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Warning:~}\marginpar{\dbend}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%tip environment
+\newenvironment{tip}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Tip:~}\marginpar{{\Large\checkmark}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%info environment
+\newenvironment{info}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Info:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%note environment
+\newenvironment{note}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Note:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%hint environment
+\newenvironment{hint}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Hint:~}\marginpar{{\Large\checkmark}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%console environments - code without formatting
+%except for # comments and strings
+
+\lstdefinelanguage{consoletiny}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\tiny\ttfamily
+}
+
+\lstdefinelanguage{consolesmall}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\scriptsize\ttfamily
+}
+
+\lstdefinelanguage{console}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\footnotesize\ttfamily
+}
+
+%The listings package doesn't have a shell script environment
+%what's up with that?
+%I'll also include some standard Unix tools at the top of the 
+%keyword list (before 'alias' which is the first true shell keyword
+
+\lstdefinelanguage{shell}
+{keywords={afio,
+          at,
+          awk,
+          cal,
+          cat,
+          cd,
+          chgrp,
+          chmod,
+          chown,
+          ci,
+          cmp,
+          co,
+          comm,
+          configure,
+          cp,
+          cpio,
+          crontab,
+          cut,
+          cvs,
+          date,
+          dd,
+          df,
+          diff,
+          du,
+          echo,
+          expr,
+          file,
+          find,
+          finger,
+          fmt,
+          fsck,
+          ftp,
+          gcc,
+          g++,
+          grep,
+          gzip,
+          head,
+          ispell,
+          kill,
+          less,
+          ln,
+          lpr,
+          ls,
+          mail,
+          make,
+          man,
+          mesg,
+          mkdir,
+          mv,
+          nice,
+          nohup,
+          od,
+          paste,
+          patch,
+          pine,
+          pr,
+          ps,
+          rcp,
+          rcs,
+          rlog,
+          rlogin,
+          rm,
+          rmdir,
+          rsh,
+          rwho,
+          sed,
+          sleep,
+          sort,
+          stty,
+          tail,
+          tar,
+          tee,
+          telnet,
+          test,
+          top,
+          touch,
+          tr,
+          tty,
+          umask,
+          uniq,
+          w,
+          wc,
+          which,
+          who,
+          write,
+          xargs,
+          alias,
+          bg,
+          break,
+          case,
+          cd,
+          command,
+          continue,
+          do,
+          done,
+          echo,
+          elif,
+          else,
+          esac,
+          eval,
+          exec,
+          exit,
+          export,
+          fc,
+          fg,
+          fi,
+          for,
+          function,
+          getopts,
+          if,
+          in,
+          jobs,
+          kill,
+          let,
+          limit,
+          newgrp,
+          print,
+          pwd,
+          read,
+          readonly,
+          return,
+          select,
+          set,
+          shift,
+          test,
+          then,
+          time,
+          times,
+          trap,
+          typeset,
+          ulimit,
+          umask,
+          unalias,
+          unlimit,
+          unset,
+          until,
+          wait,
+          whence
+          while},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\footnotesize\ttfamily
+}
+
+\lstdefinelanguage{csharp}
+{
+ breaklines=true,
+ morecomment = [l][\color{ForestGreen}]{//}, 
+ morecomment = [l][\color{ForestGreen}]{///},
+ morecomment = [s][\color{ForestGreen}]{/*}{*/},
+ morestring=[b]", 
+ sensitive = true,
+ keywordstyle=\color{blue},
+ morekeywords = {abstract,  event,  new,  struct,
+   as,  explicit,  null,  switch,
+   base,  extern,  object,  this,
+   bool,  false,  operator,  throw,
+   break,  finally,  out,  true,
+   byte,  fixed,  override,  try,
+   case,  float,  params,  typeof,
+   catch,  for,  private,  uint,
+   char,  foreach,  protected,  ulong,
+   checked,  goto,  public,  unchecked,
+   class,  if,  readonly,  unsafe,
+   const,  implicit,  ref,  ushort,
+   continue,  in,  return,  using,
+   decimal,  int,  sbyte,  virtual,
+   default,  interface,  sealed,  volatile,
+   delegate,  internal,  short,  void,
+   do,  is,  sizeof,  while,
+   double,  lock,  stackalloc,   
+   else,  long,  static,   
+   enum,  namespace,  string},
+ emph={get,set},
+ emphstyle=\color{RawSienna},
+ emph={[2]value},
+ emphstyle={[2]\textbf}
+}
+
+\lstset{
+  language=[ISO]C++,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\color{blue},
+  identifierstyle=,
+  commentstyle=\color{ForestGreen},
+  stringstyle=\color{Maroon},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=5,
+  numbersep=5pt,
+  frame=single
+}
+
+%code environments
+\lstnewenvironment{code}
+{}{}
+
+\lstnewenvironment{c++}
+{\lstset{language=[ISO]C++}}
+{}
+
+\lstnewenvironment{asm}
+{\lstset{language=[Motorola68k]Assembler}}
+{}
+
+\lstnewenvironment{csharp}
+{\lstset{language=csharp}}
+{}
+
+\lstnewenvironment{C}
+{\lstset{language=[ANSI]C}}
+{}
+
+\lstnewenvironment{objc}
+{\lstset{language=[Objective]C}}
+{}
+
+\lstnewenvironment{java}
+{\lstset{language=Java}}
+{}
+
+\lstnewenvironment{lisp}
+{\lstset{language=Lisp}}
+{}
+
+\lstnewenvironment{shell}
+{\lstset{language=shell}}
+{}
+
+\lstnewenvironment{python}
+{\lstset{language=Python}}
+{}
+
+\lstnewenvironment{latex}
+{\lstset{language=[LaTeX]TeX}}
+{}
+
+\lstnewenvironment{ruby}
+{\lstset{language=Ruby}}
+{}
+
+\lstnewenvironment{sql}
+{\lstset{language=SQL}}
+{}
+
+\lstnewenvironment{xml}
+{\lstset{language=XML}}
+{}
+
+\lstnewenvironment{make}
+{\lstset{language=make}}
+{}
+
+\lstnewenvironment{matlab}
+{\lstset{language=Matlab,
+    morekeywords={xlim,ylim,var,alpha,factorial,poissrnd,normpdf,normcdf}}}
+{}
+
+\lstnewenvironment{consoletiny}
+{\lstset{language=consoletiny}}
+{}
+
+\lstnewenvironment{consolesmall}
+{\lstset{language=consolesmall}}
+{}
+
+\lstnewenvironment{console}
+{\lstset{language=console}}
+{}
+
+%insertcode environment
+ \newcommand{\insertcode}[2] { 
+   \lstset{language=#1,caption=#2}
+   \lstinputlisting{#2} }
+   
+%insertcodecaption environment
+ \newcommand{\insertcodecaption}[3] { 
+   \lstset{language=#1,caption=#3,captionpos=b}
+   \lstinputlisting{#2} }
+   
+%insertgist environment
+\newcommand{\insertgist}[2] { 
+  \lstset{language=#1,caption={\small #2}}
+  \immediate\write18{wget #2 -O igtmp.code}
+  \lstinputlisting{igtmp.code} }
+
+%insertgistcaption environment
+\newcommand{\insertgistcaption}[3] { 
+  \lstset{language=#1,caption=#3,captionpos=b}
+  \immediate\write18{wget #2 -O igctmp.code}
+  \lstinputlisting{igctmp.code} }
+
+
