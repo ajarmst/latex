@@ -19,6 +19,8 @@
 %   \materials{Calculator, 8.5" X 11" Crib Sheet}        required
 %   \examdate{9 Jul 2002}                                required  
 %   \examtitle{Midterm}                                  required
+%   \instructions{What to do}
+%   \specialinstructions{Special rules and policies}
 %   \maketitle
 % ----------------------------------------------------------------------
 %   The stuff before \maketitle can be in any order, but it has to go
@@ -39,10 +41,22 @@
 % ----------------------------------------------------------------------
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,verbatim,enumerate,alltt,
                 fancyheadings,multicol,lastpage,listings,helvet,sectsty,marvosym}
+                
+\setlength{\parindent}{0em}
+\setlength{\parskip}{4ex}
 
-\setlength{\topmargin}{0in}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{12pt}
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+
+\setlength{\voffset}{-2.5cm}
+\setlength{\topmargin}{0.5cm}
+\setlength{\headheight}{0.5cm}
+\setlength{\headsep}{0.25cm}
+\setlength{\topskip}{0.25cm}
+\setlength{\textwidth}{16cm}
+
+\setlength{\textheight}{23.5cm}
+\setlength{\footskip}{1.5cm}
  
 \def\course#1{\def\@course{#1}}
 \course{CNT 252}
@@ -51,14 +65,16 @@
 \coursetitle{C++ Algorithms and Data Structures}
 
 \def\semester#1{\def\@semester{#1}}
-\semester{Fall 2002}
+\semester{Fall 2014}
 
 \def\materials#1{\def\@materials{#1}}
-\materials{Calculator, 8.5" X 11" Crib Sheet}
+\materials{Journal}
 
-\def\instructions#1{\def\@instructions{#1}} \instructions{Read
-  questions carefully and provide the best answer.  Show work where
-  appropriate.}
+\def\instructions#1{\def\@instructions{#1}} \instructions{This exam has \pageref{LastPage} pages.
+  Ensure that you have all pages.  Answer all questions, selecting the
+  best answer and showing your work where appropriate.}
+  
+ \def\specialinstructions#1{\def\@specialinstructions{#1}} \specialinstructions{}   
 
 \def\time#1{\def\@time{#1}}
 % \@time intentionally undefined
@@ -72,7 +88,7 @@
 \def\maketitle
 {
   \pagestyle{empty}
-  \includegraphics[scale=0.5]{/usr/local/latex/naitit.eps}
+  \includegraphics[scale=0.2]{../../latex/naitit.eps}
   \begin{flushright}
     \vspace{1in}
    {\bf {\Huge \@course}}\\\medskip
@@ -102,48 +118,27 @@
 \end{center}
 
 \begin{scriptsize}
-The following policy is an addition to the Exam and Coursework
-Regulations and Procedures as outlined in the NAIT
-Electronics/Computer Engineering Handbook.  {\em It is the student's
-  responsibility to be aware of the information contained in the
-  handbook in addition to the following policy.}
-
-{\bf Use of Electronic Devices During Exams}
-
-No electronic devices other that the approved calculator as outlined
-in the appropriate student guide, or necessary medical devices, will
-be allowed in an examination room during exams.  The use of a
-calculator will be permitted only in exams were such use is considered
-appropriate to the content of the exam, and such use is specifically
-permitted by the examiner.  For the purpose of this policy, exams are
-defined as any measurement tool used to determine learning taking place
-in classrooms, labs or in the field.  These include but are not
-limietd to lab exams, quizzes, midterm exams, final exams, etc.
-
-{\em Definition of electronic devices: Including but not limited to
-  personal stereos, MP3 players, PDA's, cellular phones, radios,
-  electronic daytimers, handhelp computers, and laptops.}
-
-The examination envigilator will ensure proper implementation of this
-policy and any decisions will be final.  Any challenges to an
-envigilators decision must be made in writion to an Assistant Program
-Head of the appropriate program. 
+\@specialinstructions
 \end{scriptsize}
-  \cleardoublepage
+  \clearpage
   \pagestyle{plain}
   \setcounter{page}{1}
   \pagenumbering{arabic}
 
   %Set Up Styles for remaining pages
-  \pagestyle{fancy}
-  \setlength{\headrulewidth}{0.6pt}
-  \setlength{\footrulewidth}{0.6pt}
-  \lhead{}
-  \chead{}
-  \rhead{}
-  \lfoot{\@course}
-  \cfoot{\thepage\ of \pageref{LastPage}}
-  \rfoot{\@examtitle}
+  
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\fancyhead{}
+\fancyfoot[RO,RE]{\sffamily\@examtitle}
+\fancyfoot[CO,CE]{\sffamily\thepage\ of \pageref{LastPage}}
+\fancyfoot[LO,LE]{\sffamily\@course}
+
+\allsectionsfont{\sffamily}
+\sectionfont{\sffamily\hspace*{-1.5em}\sectionrule{3ex}{0pt}{-1ex}{3pt}}
+\subsectionfont{\sffamily\hspace*{-1.5em}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 }
 
 %reference environment
@@ -172,20 +167,262 @@ Head of the appropriate program.
 \newenvironment{tip}%
 {%
 \begin{small}\begin{quote}\sffamily%
-{\sffamily\bf Tip:~}\marginpar{{\Large\Info}}%
+{\sffamily\bf Tip:~}\marginpar{{\Large\checkmark}}%
 }%
 {%
 \end{quote}\end{small}%
 }
 
+%info environment
+\newenvironment{info}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Info:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%note environment
+\newenvironment{note}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Note:~}\marginpar{{\Large\Info}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%hint environment
+\newenvironment{hint}%
+{%
+\begin{small}\begin{quote}\sffamily%
+{\sffamily\bf Hint:~}\marginpar{{\Large\checkmark}}%
+}%
+{%
+\end{quote}\end{small}%
+}
+
+%console environments - code without formatting
+%except for # comments and strings
+
+\lstdefinelanguage{consoletiny}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\tiny\ttfamily
+}
+
+\lstdefinelanguage{consolesmall}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\scriptsize\ttfamily
+}
+
+\lstdefinelanguage{console}
+{keywords={},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\footnotesize\ttfamily
+}
+
+%The listings package doesn't have a shell script environment
+%what's up with that?
+%I'll also include some standard Unix tools at the top of the 
+%keyword list (before 'alias' which is the first true shell keyword
+
+\lstdefinelanguage{shell}
+{keywords={afio,
+          at,
+          awk,
+          cal,
+          cat,
+          cd,
+          chgrp,
+          chmod,
+          chown,
+          ci,
+          cmp,
+          co,
+          comm,
+          configure,
+          cp,
+          cpio,
+          crontab,
+          cut,
+          cvs,
+          date,
+          dd,
+          df,
+          diff,
+          du,
+          echo,
+          expr,
+          file,
+          find,
+          finger,
+          fmt,
+          fsck,
+          ftp,
+          gcc,
+          g++,
+          grep,
+          gzip,
+          head,
+          ispell,
+          kill,
+          less,
+          ln,
+          lpr,
+          ls,
+          mail,
+          make,
+          man,
+          mesg,
+          mkdir,
+          mv,
+          nice,
+          nohup,
+          od,
+          paste,
+          patch,
+          pine,
+          pr,
+          ps,
+          rcp,
+          rcs,
+          rlog,
+          rlogin,
+          rm,
+          rmdir,
+          rsh,
+          rwho,
+          sed,
+          sleep,
+          sort,
+          stty,
+          tail,
+          tar,
+          tee,
+          telnet,
+          test,
+          top,
+          touch,
+          tr,
+          tty,
+          umask,
+          uniq,
+          w,
+          wc,
+          which,
+          who,
+          write,
+          xargs,
+          alias,
+          bg,
+          break,
+          case,
+          cd,
+          command,
+          continue,
+          do,
+          done,
+          echo,
+          elif,
+          else,
+          esac,
+          eval,
+          exec,
+          exit,
+          export,
+          fc,
+          fg,
+          fi,
+          for,
+          function,
+          getopts,
+          if,
+          in,
+          jobs,
+          kill,
+          let,
+          limit,
+          newgrp,
+          print,
+          pwd,
+          read,
+          readonly,
+          return,
+          select,
+          set,
+          shift,
+          test,
+          then,
+          time,
+          times,
+          trap,
+          typeset,
+          ulimit,
+          umask,
+          unalias,
+          unlimit,
+          unset,
+          until,
+          wait,
+          whence
+          while},
+string=[d]{"},
+morecomment=[l]{\#},
+sensitive=true,
+basicstyle=\footnotesize\ttfamily
+}
+
+\lstdefinelanguage{csharp}
+{
+ breaklines=true,
+ morecomment = [l][\color{ForestGreen}]{//}, 
+ morecomment = [l][\color{ForestGreen}]{///},
+ morecomment = [s][\color{ForestGreen}]{/*}{*/},
+ morestring=[b]", 
+ sensitive = true,
+ keywordstyle=\color{blue},
+ morekeywords = {abstract,  event,  new,  struct,
+   as,  explicit,  null,  switch,
+   base,  extern,  object,  this,
+   bool,  false,  operator,  throw,
+   break,  finally,  out,  true,
+   byte,  fixed,  override,  try,
+   case,  float,  params,  typeof,
+   catch,  for,  private,  uint,
+   char,  foreach,  protected,  ulong,
+   checked,  goto,  public,  unchecked,
+   class,  if,  readonly,  unsafe,
+   const,  implicit,  ref,  ushort,
+   continue,  in,  return,  using,
+   decimal,  int,  sbyte,  virtual,
+   default,  interface,  sealed,  volatile,
+   delegate,  internal,  short,  void,
+   do,  is,  sizeof,  while,
+   double,  lock,  stackalloc,   
+   else,  long,  static,   
+   enum,  namespace,  string},
+ emph={get,set},
+ emphstyle=\color{RawSienna},
+ emph={[2]value},
+ emphstyle={[2]\textbf}
+}
 
 \lstset{
   language=[ISO]C++,
   basicstyle=\footnotesize\ttfamily,
   keywordstyle=\color{blue},
   identifierstyle=,
-  commentstyle=\color{red}\em,
-  stringstyle=\ttfamily,
+  commentstyle=\color{ForestGreen},
+  stringstyle=\color{Maroon},
   showstringspaces=false,
   numbers=left,
   numberstyle=\tiny,
@@ -198,6 +435,98 @@ Head of the appropriate program.
 \lstnewenvironment{code}
 {}{}
 
-\lstnewenvironment{C++}
+\lstnewenvironment{c++}
 {\lstset{language=[ISO]C++}}
 {}
+
+\lstnewenvironment{asm}
+{\lstset{language=[Motorola68k]Assembler}}
+{}
+
+\lstnewenvironment{csharp}
+{\lstset{language=csharp}}
+{}
+
+\lstnewenvironment{C}
+{\lstset{language=[ANSI]C}}
+{}
+
+\lstnewenvironment{objc}
+{\lstset{language=[Objective]C}}
+{}
+
+\lstnewenvironment{java}
+{\lstset{language=Java}}
+{}
+
+\lstnewenvironment{lisp}
+{\lstset{language=Lisp}}
+{}
+
+\lstnewenvironment{shell}
+{\lstset{language=shell}}
+{}
+
+\lstnewenvironment{python}
+{\lstset{language=Python}}
+{}
+
+\lstnewenvironment{latex}
+{\lstset{language=[LaTeX]TeX}}
+{}
+
+\lstnewenvironment{ruby}
+{\lstset{language=Ruby}}
+{}
+
+\lstnewenvironment{sql}
+{\lstset{language=SQL}}
+{}
+
+\lstnewenvironment{xml}
+{\lstset{language=XML}}
+{}
+
+\lstnewenvironment{make}
+{\lstset{language=make}}
+{}
+
+\lstnewenvironment{matlab}
+{\lstset{language=Matlab,
+    morekeywords={xlim,ylim,var,alpha,factorial,poissrnd,normpdf,normcdf}}}
+{}
+
+\lstnewenvironment{consoletiny}
+{\lstset{language=consoletiny}}
+{}
+
+\lstnewenvironment{consolesmall}
+{\lstset{language=consolesmall}}
+{}
+
+\lstnewenvironment{console}
+{\lstset{language=console}}
+{}
+
+%insertcode environment
+ \newcommand{\insertcode}[2] { 
+   \lstset{language=#1,caption=#2}
+   \lstinputlisting{#2} }
+   
+%insertcodecaption environment
+ \newcommand{\insertcodecaption}[3] { 
+   \lstset{language=#1,caption=#3,captionpos=b}
+   \lstinputlisting{#2} }
+   
+%insertgist environment
+\newcommand{\insertgist}[2] { 
+  \lstset{language=#1,caption={\small #2}}
+  \immediate\write18{wget #2 -O igtmp.code}
+  \lstinputlisting{igtmp.code} }
+
+%insertgistcaption environment
+\newcommand{\insertgistcaption}[3] { 
+  \lstset{language=#1,caption=#3,captionpos=b}
+  \immediate\write18{wget #2 -O igctmp.code}
+  \lstinputlisting{igctmp.code} }
+
