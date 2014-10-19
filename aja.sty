@@ -79,8 +79,6 @@
             letterpaper,
             pdfstartview=FitB]{hyperref}
 \usepackage[dvipsnames]{xcolor}
-%\usepackage{algorithm}
-%\usepackage{algorithmic}
 \usepackage[lined,boxed,linesnumbered]{algorithm2e}
 \setlength{\parindent}{0em}
 \setlength{\parskip}{4ex}
@@ -118,7 +116,7 @@
     JUL\or AUG\or SEP\or OCT\or NOV\or DEC\fi
     \space\number\year}
 
-\newcommand*{\datesem}{%  Note that Aug work is assigned to Fall in below
+\newcommand*{\datesem}{%
     \ifcase\month \or
     Winter\or Winter\or Winter\or Winter\or Summer\or Summer\or
     Summer\or Fall\or Fall\or Fall\or Fall\or Fall\fi
@@ -267,9 +265,8 @@
 \newline
 %\rule[-14pt]{15cm}{0.6pt}
 
-%Change section, figure headers to not include chapter
+%Change section headers to not include chapter
 \def\thesection{\arabic{section}}
-\def\thefigure{\arabic{figure}}
 
 \bigskip
 \pagestyle{fancy}
@@ -488,7 +485,7 @@
 \newenvironment{reference}[1]%
 {%
 \begin{small}\begin{quote}\sffamily%.
-{\sffamily{\bf Reference:~}{#1}}\marginpar{\Large\Writinghand}\\%
+{\sffamily{\bf Reference:~}{\em #1}}\marginpar{\Large\Writinghand}\\%
 }%
 {%
 \end{quote}\end{small}%
