@@ -40,7 +40,7 @@
 %   \newproof{foo}{bar}, just like \newtheorem.
 % ----------------------------------------------------------------------
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,verbatim,enumerate,alltt,
-                fancyheadings,multicol,lastpage,listings,helvet,sectsty,marvosym}
+                fancyheadings,multicol,lastpage,listings,helvet,sectsty,marvosym,url}
                 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{4ex}
@@ -70,6 +70,9 @@
 \def\materials#1{\def\@materials{#1}}
 \materials{Journal}
 
+\def\owner#1{\def\@owner{#1}}
+\owner{AJ Armstrong}
+
 \def\instructions#1{\def\@instructions{#1}} \instructions{This exam has \pageref{LastPage} pages.
   Ensure that you have all pages.  Answer all questions, selecting the
   best answer and showing your work where appropriate.}
@@ -88,7 +91,7 @@
 \def\maketitle
 {
   \pagestyle{empty}
-  \includegraphics[scale=0.2]{../../latex/naitit.eps}
+  \includegraphics[scale=0.2]{../../latex/naitit}
   \begin{flushright}
     \vspace{1in}
    {\bf {\Huge \@course}}\\\medskip
@@ -529,4 +532,64 @@ basicstyle=\footnotesize\ttfamily
   \lstset{language=#1,caption=#3,captionpos=b}
   \immediate\write18{wget #2 -O igctmp.code}
   \lstinputlisting{igctmp.code} }
+
+\def\rightsreserved
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
+        \copyright ~\number\year , \@owner .}  All rights reserved. \\Queries and comments concerning this document may be directed to the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}}}
+
+\def\rights
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline\fbox{\parbox{2.5cm}{\includegraphics[scale=0.5]{../../latex/cc.pdf}}\parbox{13.5cm}{\scriptsize {\bf Copyright \copyright ~\number\year , \@owner .}  This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/2.5/ca/}{Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Canada License}. Queries and comments concerning this document are welcome.  Contact the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}} }
+
+\def\rightsold
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
+        \copyright ~\number\year , \@owner .}  This material may be
+        freely distributed subject to the following conditions: \\(1)
+        Distribution requires that this copyright notice be kept
+        intact and the original author be given credit reasonable to
+        the medium of distribution.  \\(2) Distribution of modified or
+        partial versions of this material is prohibited without the
+        explicit permission of the copyright holder.  \\(3) This
+        material may not be distributed in any manner that is
+        primarily directed toward commercial advantage or private
+        monetary compensation. \\Queries and comments concerning this
+        document are welcome.  Contact the author, AJ Armstrong, at
+        aja@nait.ca}} }
+
+%Link command
+%\link{URL}{text}
+\newcommand{\link}[2]{#2~(\url{#1})}
+
+%\sigline
+\newcommand{\sigline}
+{
+  \begin{flushright}
+    Instructor's Signature:\line(1,0){150}
+  \end{flushright} 
+}
+
+%enumerate_packed environment
+\newenvironment{enumerate_packed}{
+\singlespacing
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+%itemize_packed environment
+\newenvironment{itemize_packed}{
+\singlespacing
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+
 

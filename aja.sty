@@ -763,7 +763,7 @@ basicstyle=\footnotesize\ttfamily
 }
 
 \lstset{
-  language=[ISO]C++,
+  language=[ANSI]C,
   basicstyle=\footnotesize\ttfamily,
   keywordstyle=\color{blue},
   identifierstyle=,
@@ -774,7 +774,9 @@ basicstyle=\footnotesize\ttfamily
   numberstyle=\tiny,
   stepnumber=5,
   numbersep=5pt,
-  frame=single
+  frame=single,
+  caption=,
+  captionpos=b
 }
 
 %code environments
@@ -856,24 +858,24 @@ basicstyle=\footnotesize\ttfamily
 
 %insertcode environment
  \newcommand{\insertcode}[2] { 
-   \lstset{language=#1,caption=#2}
-   \lstinputlisting{#2} }
+   \lstset{language=#1,caption=#2,captionpos=b}
+   \lstinputlisting{#2} \lstset{caption=}}
    
 %insertcodecaption environment
  \newcommand{\insertcodecaption}[3] { 
    \lstset{language=#1,caption=#3,captionpos=b}
-   \lstinputlisting{#2} }
+   \lstinputlisting{#2} \lstset{caption=}}
    
 %insertgist environment
 \newcommand{\insertgist}[2] { 
   \lstset{language=#1,caption={\small #2}}
   \immediate\write18{wget #2 -O igtmp.code}
-  \lstinputlisting{igtmp.code} }
+  \lstinputlisting{igtmp.code} \lstset{caption=}}
 
 %insertgistcaption environment
 \newcommand{\insertgistcaption}[3] { 
   \lstset{language=#1,caption=#3,captionpos=b}
   \immediate\write18{wget #2 -O igctmp.code}
-  \lstinputlisting{igctmp.code} }
+  \lstinputlisting{igctmp.code} \lstset{caption=}}
 
 
