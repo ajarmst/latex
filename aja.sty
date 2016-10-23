@@ -2,7 +2,7 @@
 %   aja.sty  -- Style for NAIT CNT Documents
 %
 %   AJ Armstrong (aja@nait.ca) 20 Sep 2003
-%    
+%
 % ----------------------------------------------------------------------
 %   USAGE:
 %
@@ -20,15 +20,15 @@
 %   \docsubtitle{...}              (for article)     optional, default blank
 %   \owner{AJ Armstrong    }       (for copyright)   optional, default shown
 %   \exammaterials{...}            (for exams)       optional, default
-%   \examinstructions{...}         (for exams)       optional, default 
+%   \examinstructions{...}         (for exams)       optional, default
 %   \examtime{1.5 Hours}           (for exams)       optional, default shown
-%   
+%
 %   \maketitle (or \makeexamtitle or \makearticletitle)
 % ----------------------------------------------------------------------
 %  Environments:
-%  ------------    
+%  ------------
 %  syntax{command}       syntax notes, numbered
-%  algo{name}            algorithms, using the newalg package, numbered 
+%  algo{name}            algorithms, using the newalg package, numbered
 %  reference{reference}  references
 %  warning               warnings
 %  tip                   tips
@@ -52,7 +52,7 @@
 %  shell                              bash/zsh
 %  matlab				Matlab
 %  console,consolesmall,consoletiny   Use Environment, but no formatting (# for comment)
-%  
+%
 %
 %  Other Commands:
 %  --------------
@@ -70,7 +70,7 @@
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,alltt,enumerate,
                 fancyvrb,fancyhdr,listings,helvet,sectsty,marvosym,
                 verbatim,graphics,fancyhdr,lastpage,setspace,hyphenat,
-                array,ragged2e,url,chngcntr,units,tabularx}
+                array,ragged2e,url,chngcntr,units,tabularx,standalone,calc}
 \usepackage[usenames]{color}
 \usepackage[bookmarks,
             pdftex,
@@ -292,7 +292,18 @@
 {
   \begin{flushright}
     Instructor's Signature:\line(1,0){150}
-  \end{flushright} 
+  \end{flushright}
+}
+
+%\inserttikz{name}{caption}{scale}
+\newcommand{\inserttikz}[3]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includestandalone[width=\textwidth]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
 }
 
 %\insertgraphic{name}{caption}{scale}
@@ -578,7 +589,7 @@ basicstyle=\footnotesize\ttfamily
 
 %The listings package doesn't have a shell script environment
 %what's up with that?
-%I'll also include some standard Unix tools at the top of the 
+%I'll also include some standard Unix tools at the top of the
 %keyword list (before 'alias' which is the first true shell keyword
 
 \lstdefinelanguage{shell}
@@ -730,10 +741,10 @@ basicstyle=\footnotesize\ttfamily
 \lstdefinelanguage{csharp}
 {
  breaklines=true,
- morecomment = [l][\color{ForestGreen}]{//}, 
+ morecomment = [l][\color{ForestGreen}]{//},
  morecomment = [l][\color{ForestGreen}]{///},
  morecomment = [s][\color{ForestGreen}]{/*}{*/},
- morestring=[b]", 
+ morestring=[b]",
  sensitive = true,
  keywordstyle=\color{blue},
  morekeywords = {abstract,  event,  new,  struct,
@@ -753,8 +764,8 @@ basicstyle=\footnotesize\ttfamily
    default,  interface,  sealed,  volatile,
    delegate,  internal,  short,  void,
    do,  is,  sizeof,  while,
-   double,  lock,  stackalloc,   
-   else,  long,  static,   
+   double,  lock,  stackalloc,
+   else,  long,  static,
    enum,  namespace,  string},
  emph={get,set},
  emphstyle=\color{RawSienna},
@@ -857,25 +868,23 @@ basicstyle=\footnotesize\ttfamily
 {}
 
 %insertcode environment
- \newcommand{\insertcode}[2] { 
+ \newcommand{\insertcode}[2] {
    \lstset{language=#1,caption=#2,captionpos=b}
    \lstinputlisting{#2} \lstset{caption=}}
-   
+
 %insertcodecaption environment
- \newcommand{\insertcodecaption}[3] { 
+ \newcommand{\insertcodecaption}[3] {
    \lstset{language=#1,caption=#3,captionpos=b}
    \lstinputlisting{#2} \lstset{caption=}}
-   
+
 %insertgist environment
-\newcommand{\insertgist}[2] { 
+\newcommand{\insertgist}[2] {
   \lstset{language=#1,caption={\small #2}}
   \immediate\write18{wget #2 -O igtmp.code}
   \lstinputlisting{igtmp.code} \lstset{caption=}}
 
 %insertgistcaption environment
-\newcommand{\insertgistcaption}[3] { 
+\newcommand{\insertgistcaption}[3] {
   \lstset{language=#1,caption=#3,captionpos=b}
   \immediate\write18{wget #2 -O igctmp.code}
   \lstinputlisting{igctmp.code} \lstset{caption=}}
-
-
