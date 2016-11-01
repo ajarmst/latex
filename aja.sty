@@ -287,11 +287,28 @@
 %Link command
 %\link{URL}{text}
 \newcommand{\link}[2]{#2~(\url{#1})}
+
 %\sigline
 \newcommand{\sigline}
 {
   \begin{flushright}
-    Instructor's Signature:\line(1,0){150}
+    Instructor's Signature:\line(1,0){175}
+  \end{flushright}
+}
+
+%\nameline
+\newcommand{\nameline}
+{
+  \begin{flushright}
+    Name:\line(1,0){175}
+  \end{flushright}
+}
+
+%\formline
+\newcommand{\formline}[1]
+{
+  \begin{flushright}
+    #1\line(1,0){175}
   \end{flushright}
 }
 
