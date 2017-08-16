@@ -206,6 +206,28 @@
 \end{quote}\end{small}%
 }
 
+%\insertgraphic{name}{scale}
+\newcommand{\insertgraphic}[2]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#2]{#1}
+          \end{center}
+  \end{figure}
+}
+
+
+%\insertgraphiccaption{name}{caption}{scale}
+\newcommand{\insertgraphiccaption}[3]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=#3]{#1}
+      \caption[#2]{\label{#1}#2}
+    \end{center}
+  \end{figure}
+}
+
 %console environments - code without formatting
 %except for # comments and strings
 
@@ -451,7 +473,7 @@ basicstyle=\footnotesize\ttfamily
 {}
 
 \lstnewenvironment{C}
-{\lstset{language=[ANSI]C}}
+{\lstset{language=[ISO]C}}
 {}
 
 \lstnewenvironment{objc}
