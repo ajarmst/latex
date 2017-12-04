@@ -70,7 +70,8 @@
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,alltt,enumerate,
                 fancyvrb,fancyhdr,listings,helvet,sectsty,marvosym,
                 verbatim,graphics,fancyhdr,lastpage,setspace,hyphenat,
-                array,ragged2e,url,chngcntr,units,tabularx,standalone,calc}
+                array,ragged2e,url,chngcntr,units,tabularx,standalone,
+                calc,mathtools}
 \usepackage[usenames]{color}
 \usepackage[bookmarks,
             pdftex,
@@ -79,7 +80,7 @@
             letterpaper,
             pdfstartview=FitB]{hyperref}
 \usepackage[dvipsnames]{xcolor}
-\usepackage[lined,boxed,linesnumbered]{algorithm2e}
+\usepackage[lined,boxruled,linesnumbered,longend,algochapter,procnumbered]{algorithm2e}
 \setlength{\parindent}{0em}
 \setlength{\parskip}{4ex}
 
@@ -95,6 +96,9 @@
 
 \setlength{\textheight}{23.5cm}
 \setlength{\footskip}{1.5cm}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
 %\sloppy
 
@@ -440,13 +444,28 @@
   ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
         \copyright ~\number\year , \@owner .}  All rights reserved. \\Queries and comments concerning this document may be directed to the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}}}
 
+
 \def\rights
+{
+%\pdfbookmark[0]{Copyright Notice}{copyright}
+  ~\newline
+  \newline\fbox{\parbox{2.5cm}{\includegraphics[scale=0.5]{../../latex/cc.pdf}}\parbox{13.5cm}{\scriptsize
+      {\bf Copyright \copyright ~\number\year , \@owner .}  This work
+      is licensed under a
+      \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative
+        Commons Attribution-NonCommercial-ShareAlike 4.0 International
+        License}. Queries and comments concerning this document are
+      welcome.  Contact the author, AJ Armstrong, at
+      \href{mailto:aja@nait.ca}{aja@nait.ca}}} }
+
+
+\def\rightsold
 {
 %\pdfbookmark[0]{Copyright Notice}{copyright}
   ~\newline \newline\fbox{\parbox{2.5cm}{\includegraphics[scale=0.5]{../../latex/cc.pdf}}\parbox{13.5cm}{\scriptsize {\bf Copyright \copyright ~\number\year , \@owner .}  This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/2.5/ca/}{Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Canada License}. Queries and comments concerning this document are welcome.  Contact the author, AJ Armstrong, at \href{mailto:aja@nait.ca}{aja@nait.ca}}} }
 
 
-\def\rightsold
+\def\rightsolder
 {
 %\pdfbookmark[0]{Copyright Notice}{copyright}
   ~\newline \newline \fbox{\parbox{16cm}{\scriptsize {\bf Copyright
