@@ -170,7 +170,6 @@
 	\AtBeginDocument{\counterwithin{figure}{section}}
 }
 
-
 %Title
 \def\maketitle
 {
@@ -208,11 +207,16 @@
     }
 \end{flushright}
 \end{minipage}
+
+%A bit complicated: check to see if the counter is a number or a letter
+\ifnum0<0{\@docnumber}\relax %Does it start with a number?
 \setcounter{chapter}{\@docnumber}
 \def\thechapter{\arabic{chapter}\@docsubnumber}
-\newline
+\else %Nodanuhmbah
+\renewcommand{\thechapter}{\@docnumber}
+\fi
+%\newline
 %\rule[-14pt]{15cm}{0.6pt}
-
 
 \bigskip
 \pagestyle{fancy}
