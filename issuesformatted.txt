@@ -1,0 +1,134 @@
+# Global, open issues assigned to you
+badvam-support 13  Permissions Error Saving Settings on Close [bug] @ajarmst
+ica-0-hbhinder2 2  ICA - 0 Done (Re-issuing) @ajarmst
+ica-0-hbhinder2 3  ICA - 0 Done (Re-issuing) @ajarmst
+ica-1-AdrianDeGuzman  1  Please mark my ICA 1. @ajarmst
+ica-1-AdrianMackenzieNAIT  1  This is complete, please mark [ICA #1] @ajarmst
+ica-1-Lrhoel  1  Please mark me! @ajarmst
+ica-1-SamuelJChristian  1  Please mark my ICA1 @ajarmst
+ica-1-Sukhpreet10  1  please mark my ica01 @ajarmst
+ica-1-alwon1  1  Mark My Stuff @ajarmst
+ica-1-bgullason  1  Please Mark My ICA 1 @ajarmst
+ica-1-brianduong84  1  Please mark my ICA 1 @ajarmst
+ica-1-csmenzies  1  Please mark my ICA1 @ajarmst
+ica-1-dschmidt46  1  Mark @ajarmst
+ica-1-fitzd  1  Please mark my ICA1 @ajarmst
+ica-1-gBhatGIT  1  Mr. A Please mark my ica 1 3pm latest 17th september version main.c @ajarmst
+ica-1-ge-ruiz  1  Please mark my ICA 1. @ajarmst
+ica-1-hbhinder2 2  ICA 1 - Done (Reissuing) @ajarmst
+ica-1-jklassen  1  Please mark @ajarmst
+ica-1-pqin  1  ICA 1 Submission @ajarmst
+ica-1-romeosantos8  1  please check my code @ajarmst
+ica-1-stran16  1  Please mark my ICA #1 @ajarmst
+ica-1-vnguyen37  1  Please mark my ICA 1 @ajarmst
+ica-1-wmarco  1  ICA 1 mark me! @ajarmst
+ica-2-AdrianDeGuzman 1  Please mark my ICA 2 @ajarmst
+ica-2-AdrianMackenzieNAIT  1  ICA 3 Finished @ajarmst
+ica-2-Lrhoel  1  Please mark my ICA 2 @ajarmst
+ica-2-SamuelJChristian  1  Please mark my ICA2 @ajarmst
+ica-2-Sukhpreet10 1  Please mark my ICA02 @ajarmst
+ica-2-alwon1 1  Mark this  @ajarmst
+ica-2-bgullason  1  Please mark my ICA2 @ajarmst
+ica-2-brianduong84 1  Please mark my ICA 2 @ajarmst
+ica-2-dhache2  1  Please mark my ICA2 @ajarmst
+ica-2-dschmidt46  1  Finished @ajarmst
+ica-2-fitzd 1  Please mark my ICA2 @ajarmst
+ica-2-gBhatGIT 1  Please check my ica 2 ty @ajarmst
+ica-2-ge-ruiz 1  Please mark my ICA 02. @ajarmst
+ica-2-hbhinder2 1  ICA - 2 (Never issued) @ajarmst
+ica-2-jklassen  1  Please mark @ajarmst
+ica-2-pqin  1  ICA 2 submission @ajarmst
+ica-2-romeosantos8  1  please check my code @ajarmst
+ica-2-stran16  1  Please mark my ICA #2 @ajarmst
+ica-2-vnguyen37  1  Please mark my ICA 2 @ajarmst
+ica-2-wmarco1  1  Mark me @ajarmst
+ica-4-AdrianDeGuzman 4  Please mark my ICA 4  @ajarmst
+ica-4-AdrianMackenzieNAIT 1  ICA 4 Finished @ajarmst
+ica-4-Lrhoel 1  Please mark my ICA 4! @ajarmst
+ica-4-SamuelJChristian 1  Please mark my ICA4 @ajarmst
+ica-4-Sukhpreet10 1  Please mark my Lab01 @ajarmst
+ica-4-Sukhpreet10 2  Please mark my ica4 @ajarmst
+ica-4-bgullason 1  Please mark my ica4, Ben Gullason @ajarmst
+ica-4-dschmidt46 1  Finished. Please mark. @ajarmst
+ica-4-fitzd 1  Please mark ICA4 @ajarmst
+ica-4-hbhinder2 2  ICA - 4 Done (Re-issuing) @ajarmst
+ica-4-jklassen 1  Please mark @ajarmst
+ica-4-pqin 1  Mark ICA 4 @ajarmst
+ica-4-stran16 1  Please mark my ICA #4 @ajarmst
+ica-4-vnguyen37 1  Please mark my ICA 4 @ajarmst
+ica-4-wmarco1 1  ica-4-wmarco1 for marks @ajarmst
+ica-5-AdrianDeGuzman 1  Please mark my ICA 5 @ajarmst
+ica-5-AdrianMackenzieNAIT 2  ICA5 Finished @ajarmst
+ica-5-Lrhoel 1  Please mark my ICA 5! @ajarmst
+ica-5-SamuelJChristian 1  Please mark my ICA5 @ajarmst
+ica-5-Sukhpreet10 1  Please mark my ica05 @ajarmst
+ica-5-bgullason 1  CMPE1700, Ben Gullason, ica5, completed @ajarmst
+ica-5-csmenzies 1  Please mark my ICA5 @ajarmst
+ica-5-dschmidt46 1  Please Mark @ajarmst
+ica-5-fitzd 1  Please mark my ICA 5 @ajarmst
+ica-5-gBhatGIT 1  ICA 5 Cards struct shuffle Done please take a look! [good first issue] @ajarmst
+ica-5-hbhinder2 2  ICA 5 - Done (Re-issuing) @ajarmst
+ica-5-jklassen 1  Please Mark @ajarmst
+ica-5-pqin 1  ICA 5 Submission @ajarmst
+ica-5-stran16 1  Please mark my ICA#5 @ajarmst
+ica-5-vnguyen37 1  Please mark my ICA 5 @ajarmst
+ica-5-wmarco1 1  ica5 for marks - might have crt/sdk windows issues? @ajarmst
+ica-7-pass-by-address-AdrianDeGuzman 2  ICA 7 @ajarmst
+ica-7-pass-by-address-Lrhoel 1  Please mark my ICA 7! @ajarmst
+ica-7-pass-by-address-Sukhpreet10 1  Please mark my ica07 @ajarmst
+ica-7-pass-by-address-bgullason 1  ica 7 complete @ajarmst
+ica-7-pass-by-address-csmenzies 1  Please mark my ICA7 @ajarmst
+ica-7-pass-by-address-fitzd 1  Please mark ICA 7 @ajarmst
+ica-7-pass-by-address-jklassen 1  Please mark @ajarmst
+ica-7-pass-by-address-pqin 1  ICA 7 Submission for Marking @ajarmst
+ica-7-pass-by-address-stran16 1  Completed ICA #7 @ajarmst
+ica-7-pass-by-address-vnguyen37 1  Please mark my ICA 7 @ajarmst
+ica-7-pass-by-address-wmarco1 1  mark me @ajarmst
+ica-8a-AdrianDeGuzman 1  ICA 8 @ajarmst
+ica-8a-AdrianMackenzieNAIT 1  FINISHED @ajarmst
+ica-8a-Lrhoel 1  Please mark my ICA 8! @ajarmst
+ica-8a-SamuelJChristian 1  Please mark my ICA8 @ajarmst
+ica-8a-Sukhpreet10 1  Please mark my ica08 @ajarmst
+ica-8a-bgullason 1  Finished ica8 @ajarmst
+ica-8a-csmenzies 1  Please mark my ICA8 @ajarmst
+ica-8a-dschmidt46 1  Please mark @ajarmst
+ica-8a-fitzd 1  Please mark my ICA 8 @ajarmst
+ica-8a-gBhatGIT 1  Done ica8a [good first issue] @ajarmst
+ica-8a-ge-ruiz 1  ICA 08 - Mark please. @ajarmst
+ica-8a-hbhinder2 1  Done (Mark Please) @ajarmst
+ica-8a-jklassen 1  Please mark @ajarmst
+ica-8a-pqin 1  ICA 8 Submission @ajarmst
+ica-8a-romeosantos8 1  please mark this @ajarmst
+ica-8a-stran16 1  Please mark my ICA #8 @ajarmst
+ica-8a-vnguyen37 1  Please mark my ICA 8 @ajarmst
+lab-1-AdrianDeGuzman 1  Please mark my Lab 1 @ajarmst
+lab-1-Lrhoel 1  Please mark my LAB 1! @ajarmst
+lab-1-SamuelJChristian 1  Please mark my Lab 1 @ajarmst
+lab-1-Sukhpreet10 1  Please mark my lab01 @ajarmst
+lab-1-bgullason 2  Please mark my Lab1, Ben Gullason @ajarmst
+lab-1-csmenzies 1  Please mark my Lab 1 @ajarmst
+lab-1-dschmidt46 1  Please mark @ajarmst
+lab-1-fitzd 1  Please mark Lab 1 @ajarmst
+lab-1-gBhatGIT 1  Finished lab 1 Gaurav Bhat [Finished Please Check!] @ajarmst
+lab-1-hbhinder2 2  Lab - 1 Done (Re-issuing) @ajarmst
+lab-1-jklassen 1  Please mark @ajarmst
+lab-1-pqin 1  Lab 1 Submission @ajarmst
+lab-1-stran16 1  Please mark my Lab #1 @ajarmst
+lab-1-vnguyen37 1  Please mark my Lab 1 @ajarmst
+lab-1-wmarco1 1  lab-1-wmarco1 for marking @ajarmst
+lab-2-AdrianDeGuzman 1  Please mark my LAB 2 - Poker. @ajarmst
+lab-2-AdrianMackenzieNAIT 1  Lab 2 Hand in: Please mark me  @ajarmst
+lab-2-Lrhoel 1  Please mark my lab2! @ajarmst
+lab-2-SamuelJChristian 1  Please mark my Lab 2 @ajarmst
+lab-2-Sukhpreet10 2  Please mark my lab2 for basic @ajarmst
+lab-2-bgullason 1  Ben Gullason, Lab2, Poker, Completed @ajarmst
+lab-2-dschmidt46 1  Mark Base Only @ajarmst
+lab-2-fitzd 1  Please mark my lab 2 @ajarmst
+lab-2-hbhinder2 1  Lab - 2 Done (Re-issuing) @ajarmst
+lab-2-jklassen 1  Please mark @ajarmst
+lab-2-pqin 1  Lab 2 Submission @ajarmst
+lab-2-romeosantos8 1  Please mark this @ajarmst
+lab-2-stran16 1  Please mark my Lab #2 @ajarmst
+lab-2-vnguyen37 1  Please mark my Lab 2 @ajarmst
+lab-2-wmarco1 1  mark me @ajarmst
+latex  1  Need to update usage comments in aja.sty.  Waaay out of date. @ajarmst
