@@ -68,7 +68,7 @@
 %  \insertcode{enviro}{file}          insert code from file, with environment
 % ----------------------------------------------------------------------
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,alltt,enumerate,
-                fancyvrb,fancyhdr,listings,helvet,sectsty,marvosym,
+                fancyvrb,fancyhdr,textcomp,listings,helvet,sectsty,marvosym,
                 verbatim,graphics,fancyhdr,lastpage,setspace,hyphenat,
                 array,ragged2e,url,chngcntr,units,tabularx,standalone,
                 calc,mathtools}
@@ -779,40 +779,43 @@ sensitive=true,
 basicstyle=\footnotesize\ttfamily
 }
 
-\lstdefinelanguage{csharp}
-{
- breaklines=true,
- morecomment = [l][\color{ForestGreen}]{//},
- morecomment = [l][\color{ForestGreen}]{///},
- morecomment = [s][\color{ForestGreen}]{/*}{*/},
- morestring=[b]",
- sensitive = true,
- keywordstyle=\color{blue},
- morekeywords = {abstract,  event,  new,  struct,
-   as,  explicit,  null,  switch,
-   base,  extern,  object,  this,
-   bool,  false,  operator,  throw,
-   break,  finally,  out,  true,
-   byte,  fixed,  override,  try,
-   case,  float,  params,  typeof,
-   catch,  for,  private,  uint,
-   char,  foreach,  protected,  ulong,
-   checked,  goto,  public,  unchecked,
-   class,  if,  readonly,  unsafe,
-   const,  implicit,  ref,  ushort,
-   continue,  in,  return,  using,
-   decimal,  int,  sbyte,  virtual,
-   default,  interface,  sealed,  volatile,
-   delegate,  internal,  short,  void,
-   do,  is,  sizeof,  while,
-   double,  lock,  stackalloc,
-   else,  long,  static,
-   enum,  namespace,  string},
- emph={get,set},
- emphstyle=\color{RawSienna},
- emph={[2]value},
- emphstyle={[2]\textbf}
-}
+%listings apparently has native C# support now
+% \lstdefinelanguage{csharp}
+% {
+%  breaklines=true,
+%  morecomment = [l][\color{ForestGreen}]{//},
+%  morecomment = [l][\color{ForestGreen}]{///},
+%  morecomment = [s][\color{ForestGreen}]{/*}{*/},
+%  morestring=[b]",
+%  sensitive = true,
+%  keywordstyle=\color{blue},
+%  morekeywords = {abstract,  event,  new,  struct,
+%    as,  explicit,  null,  switch,
+%    base,  extern,  object,  this,
+%    bool,  false,  operator,  throw,
+%    break,  finally,  out,  true,
+%    byte,  fixed,  override,  try,
+%    case,  float,  params,  typeof,
+%    catch,  for,  private,  uint,
+%    char,  foreach,  protected,  ulong,
+%    checked,  goto,  public,  unchecked,
+%    class,  if,  readonly,  unsafe,
+%    const,  implicit,  ref,  ushort,
+%    continue,  in,  return,  using,
+%    decimal,  int,  sbyte,  virtual,
+%    default,  interface,  sealed,  volatile,
+%    delegate,  internal,  short,  void,
+%    do,  is,  sizeof,  while,
+%    double,  lock,  stackalloc,
+%    else,  long,  static,
+%    enum,  namespace,  string},
+%  emph={get,set},
+%  emphstyle=\color{RawSienna},
+%  emph={[2]value},
+%  emphstyle={[2]\textbf}
+% }
+
+
 
 \lstset{
   language=[ANSI]C,
@@ -835,20 +838,24 @@ basicstyle=\footnotesize\ttfamily
 \lstnewenvironment{code}
 {}{}
 
+%\lstnewenvironment{csharp}
+%{\lstset{language=csharp}}
+%{}
+
+\lstnewenvironment{C}
+{\lstset{language=[ANSI]C}}
+{}
+
 \lstnewenvironment{c++}
 {\lstset{language=[ISO]C++}}
 {}
 
+\lstnewenvironment{csharp}
+{\lstset{language=[Sharp]C}}
+{}
+
 \lstnewenvironment{asm}
 {\lstset{language=[Motorola68k]Assembler}}
-{}
-
-\lstnewenvironment{csharp}
-{\lstset{language=csharp}}
-{}
-
-\lstnewenvironment{C}
-{\lstset{language=[ANSI]C}}
 {}
 
 \lstnewenvironment{objc}

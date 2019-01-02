@@ -4,7 +4,7 @@
 %   AJ Armstrong (aja@nait.ab.ca) 9 Jul 2002
 %
 %   Based on the scribe notes macros by Shang-Hua Teng (steng@cs.bu.edu)
-%   
+%
 % ----------------------------------------------------------------------
 %   USAGE:
 %
@@ -17,7 +17,7 @@
 %   \semester{Fall 2002}                                 optional
 %   \time{1.5 Hourse}                                    required
 %   \materials{Calculator, 8.5" X 11" Crib Sheet}        required
-%   \examdate{9 Jul 2002}                                required  
+%   \examdate{9 Jul 2002}                                required
 %   \examtitle{Midterm}                                  required
 %   \instructions{What to do}
 %   \specialinstructions{Special rules and policies}
@@ -40,8 +40,9 @@
 %   \newproof{foo}{bar}, just like \newtheorem.
 % ----------------------------------------------------------------------
 \RequirePackage{fullpage,amsmath,amssymb,epsfig,verbatim,enumerate,alltt,
-                fancyheadings,multicol,lastpage,listings,helvet,sectsty,marvosym,url}
-                
+                fancyheadings,multicol,lastpage,textcomp,listings,helvet,sectsty,marvosym,url}
+
+\usepackage[dvipsnames]{xcolor}
 \setlength{\parindent}{0em}
 \setlength{\parskip}{4ex}
 
@@ -57,7 +58,7 @@
 
 \setlength{\textheight}{23.5cm}
 \setlength{\footskip}{1.5cm}
- 
+
 \def\course#1{\def\@course{#1}}
 \course{CNT 252}
 
@@ -76,8 +77,8 @@
 \def\instructions#1{\def\@instructions{#1}} \instructions{This exam has \pageref{LastPage} pages.
   Ensure that you have all pages.  Answer all questions, selecting the
   best answer and showing your work where appropriate.}
-  
- \def\specialinstructions#1{\def\@specialinstructions{#1}} \specialinstructions{}   
+
+ \def\specialinstructions#1{\def\@specialinstructions{#1}} \specialinstructions{}
 
 \def\time#1{\def\@time{#1}}
 % \@time intentionally undefined
@@ -129,7 +130,7 @@
   \pagenumbering{arabic}
 
   %Set Up Styles for remaining pages
-  
+
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.6pt}
@@ -257,7 +258,7 @@ basicstyle=\footnotesize\ttfamily
 
 %The listings package doesn't have a shell script environment
 %what's up with that?
-%I'll also include some standard Unix tools at the top of the 
+%I'll also include some standard Unix tools at the top of the
 %keyword list (before 'alias' which is the first true shell keyword
 
 \lstdefinelanguage{shell}
@@ -409,10 +410,10 @@ basicstyle=\footnotesize\ttfamily
 \lstdefinelanguage{csharp}
 {
  breaklines=true,
- morecomment = [l][\color{ForestGreen}]{//}, 
+ morecomment = [l][\color{ForestGreen}]{//},
  morecomment = [l][\color{ForestGreen}]{///},
  morecomment = [s][\color{ForestGreen}]{/*}{*/},
- morestring=[b]", 
+ morestring=[b]",
  sensitive = true,
  keywordstyle=\color{blue},
  morekeywords = {abstract,  event,  new,  struct,
@@ -432,8 +433,8 @@ basicstyle=\footnotesize\ttfamily
    default,  interface,  sealed,  volatile,
    delegate,  internal,  short,  void,
    do,  is,  sizeof,  while,
-   double,  lock,  stackalloc,   
-   else,  long,  static,   
+   double,  lock,  stackalloc,
+   else,  long,  static,
    enum,  namespace,  string},
  emph={get,set},
  emphstyle=\color{RawSienna},
@@ -473,7 +474,7 @@ basicstyle=\footnotesize\ttfamily
 {}
 
 \lstnewenvironment{C}
-{\lstset{language=[ISO]C}}
+{\lstset{language=[ANSI]C}}
 {}
 
 \lstnewenvironment{objc}
@@ -534,23 +535,23 @@ basicstyle=\footnotesize\ttfamily
 {}
 
 %insertcode environment
- \newcommand{\insertcode}[2] { 
+ \newcommand{\insertcode}[2] {
    \lstset{language=#1,caption=#2}
    \lstinputlisting{#2} }
-   
+
 %insertcodecaption environment
- \newcommand{\insertcodecaption}[3] { 
+ \newcommand{\insertcodecaption}[3] {
    \lstset{language=#1,caption=#3,captionpos=b}
    \lstinputlisting{#2} }
-   
+
 %insertgist environment
-\newcommand{\insertgist}[2] { 
+\newcommand{\insertgist}[2] {
   \lstset{language=#1,caption={\small #2}}
   \immediate\write18{wget #2 -O igtmp.code}
   \lstinputlisting{igtmp.code} }
 
 %insertgistcaption environment
-\newcommand{\insertgistcaption}[3] { 
+\newcommand{\insertgistcaption}[3] {
   \lstset{language=#1,caption=#3,captionpos=b}
   \immediate\write18{wget #2 -O igctmp.code}
   \lstinputlisting{igctmp.code} }
@@ -592,7 +593,7 @@ basicstyle=\footnotesize\ttfamily
 {
   \begin{flushright}
     Instructor's Signature:\line(1,0){150}
-  \end{flushright} 
+  \end{flushright}
 }
 
 %enumerate_packed environment
@@ -612,6 +613,3 @@ basicstyle=\footnotesize\ttfamily
   \setlength{\parskip}{0pt}
   \setlength{\parsep}{0pt}
 }{\end{itemize}}
-
-
-
