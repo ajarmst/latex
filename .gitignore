@@ -72,3 +72,5 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+
+Graphpaper/auto/

@@ -1,0 +1,28 @@
+\documentclass{article}
+
+% Use the following to generate a 100 page pdf of copies
+% pdftk engpaper.pdf cat $(printf '1 %.0s' {1..100}) output engpad.pdf
+
+\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[svgnames]{xcolor}
+\usepackage[x11names]{xcolor}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{layout}
+
+\definecolor{mydeepgreen}{rgb}{0.07, 0.56, 0.04}
+
+\usepackage[
+    pattern=majmin,
+    majorcolor={mydeepgreen!55},
+    minorcolor={mydeepgreen!25},
+    patternsize=0.250in]{gridpapers}
+    %bgcolor=white!90!Goldenrod]{gridpapers}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \draw[line width=2pt, mydeepgreen]
+  (current page.center) ++(-3.5in,-4.825in) rectangle ++(7in,10in);
+\end{tikzpicture}
+\end{document}
