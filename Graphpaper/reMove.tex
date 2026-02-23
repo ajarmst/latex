@@ -1,0 +1,35 @@
+\documentclass{article}
+
+% Use the following to generate a 100 page pdf of copies
+% pdftk engpaper.pdf cat $(printf '1 %.0s' {1..100}) output engpad.pdf
+
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\definecolor{mydeepgreen}{rgb}{0.07, 0.56, 0.04}
+
+% We let gridpapers configure the textarea/grid, and geometry set the full page
+\usepackage[
+  pattern=majmin,
+  majorcolor={mydeepgreen!55},
+  minorcolor={mydeepgreen!25},
+  patternsize=0.250in,
+  textarea,
+  % Text area (grid area) 4in x 7in, centered in a 4.24 x 7.7 in page:
+  geometry={paperwidth=4.24in, paperheight=7.7in,
+            textwidth=4in, textheight=7in,
+            hmargin=0.12in, vmargin=0.35in}
+]{gridpapers}
+
+\usepackage{tikz}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+  % Draw a heavy border around the 4x7 textarea (the engineering grid)
+  \draw[line width=2pt, mydeepgreen]
+    (current page text area.south west)
+      rectangle
+    (current page text area.north east);
+\end{tikzpicture}
+
+\end{document}
